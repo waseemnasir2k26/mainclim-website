@@ -275,4 +275,9 @@ export const navigation = {
     { name: "Dépannage", href: "/services#depannage" },
     { name: "Installation", href: "/services#installation" },
   ],
+  landingPages: [
+    { name: "Design A - Corporate", href: "/" },
+    { name: "Design B - Service", href: "/landing-b" },
+    { name: "Design C - Minimal", href: "/landing-c" },
+  ],
 };

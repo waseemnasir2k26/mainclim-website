@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Phone, Mail } from "lucide-react";
+import { Menu, X, Phone, Mail, ChevronDown, Layout } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { companyInfo, navigation } from "@/data/company";
@@ -16,6 +16,7 @@ interface HeaderProps {
 export default function Header({ variant = "solid" }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDesignDropdownOpen, setIsDesignDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,6 +108,54 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                   {item.name}
                 </Link>
               ))}
+
+              {/* Landing Pages Dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setIsDesignDropdownOpen(!isDesignDropdownOpen)}
+                  onBlur={() => setTimeout(() => setIsDesignDropdownOpen(false), 200)}
+                  className={cn(
+                    "flex items-center gap-1 font-medium transition-colors hover:text-blue-600",
+                    textColor
+                  )}
+                >
+                  <Layout className="w-4 h-4" />
+                  Designs
+                  <ChevronDown
+                    className={cn(
+                      "w-4 h-4 transition-transform",
+                      isDesignDropdownOpen && "rotate-180"
+                    )}
+                  />
+                </button>
+
+                <AnimatePresence>
+                  {isDesignDropdownOpen && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute top-full right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
+                    >
+                      <div className="px-4 py-2 border-b border-gray-100">
+                        <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                          Landing Pages
+                        </span>
+                      </div>
+                      {navigation.landingPages.map((page) => (
+                        <Link
+                          key={page.href}
+                          href={page.href}
+                          className="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                          onClick={() => setIsDesignDropdownOpen(false)}
+                        >
+                          {page.name}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
             </div>
 
             {/* CTA Buttons */}
@@ -154,6 +203,26 @@ export default function Header({ variant = "solid" }: HeaderProps) {
                       {item.name}
                     </Link>
                   ))}
+
+                  {/* Mobile Landing Pages */}
+                  <div className="pt-4 border-t">
+                    <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                      Landing Page Designs
+                    </span>
+                    <div className="mt-2 space-y-2">
+                      {navigation.landingPages.map((page) => (
+                        <Link
+                          key={page.href}
+                          href={page.href}
+                          className="block py-2 text-gray-700 hover:text-blue-600 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {page.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+
                   <div className="pt-4 border-t space-y-3">
                     <a
                       href={`tel:${companyInfo.phone}`}

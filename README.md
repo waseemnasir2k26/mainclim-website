@@ -2,6 +2,10 @@
 
 A professional, modern website for **Main Clim** — an HVAC (climatisation, ventilation, and refrigeration) company based in Benin, West Africa.
 
+## Status
+
+Last reviewed: September 2026 · release v2026.09
+
 ## 🌟 Features
 
 - **3 Landing Page Variants** to choose from:

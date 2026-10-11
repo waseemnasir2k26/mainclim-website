@@ -1,0 +1,4 @@
+- mainclim-website is a public Next.js 14 + TypeScript + Tailwind marketing site for Main Clim, an HVAC company in Benin, with French content, three landing variants, a multi-step quote form, portfolio and blog routes.
+- State: no commits since the 2026.09 release (2026-09-16); last functional change was the GitHub Actions CI/CD workflow on 2026-02-26. Site code was not touched.
+- Reviewed October 2026: README, commit history and 11 external links (all 200 except the placeholder clone URL https://github.com/yourusername/mainclim-website.git, which returns 404 and was left unchanged because the README marks the project proprietary); package version bumped 0.2.0 -> 0.3.0; a Work with SkynetLabs section was added.
+- Known gaps: no LICENSE file (README says proprietary); the older 1.0.0 changelog entry still has placeholder date 2024-01-XX; no tests, so CI only lints and builds; no live URL stated.
